@@ -23,15 +23,23 @@ endif()
 # FetchContent_Declare()
 # > wget "https://github.com/gabime/spdlog/archive/refs/tags/v1.15.3.zip" -O ./cmake_fetch_content-spdlog.zip
 ###
-include(FetchContent)
-set(SPDLOG_FMT_EXTERNAL OFF CACHE BOOL "" FORCE)
-FetchContent_Declare(
-  FetchContent_spdlog
-  URL "${CMAKE_CURRENT_LIST_DIR}/cmake_fetch_content-spdlog.zip"
-  URL_MD5 "F00DFA11FD9EE2F9B54D0315F4590E6B"
-  DOWNLOAD_EXTRACT_TIMESTAMP OFF
-)
-FetchContent_MakeAvailable(FetchContent_spdlog)
+find_package("spdlog")
+find_package("fmt")
+if(TARGET "spdlog::spdlog" AND TARGET "fmt::fmt")
+  target_link_libraries(
+    "spdlog::spdlog" INTERFACE "fmt::fmt"
+  )
+else()
+  include(FetchContent)
+  set(SPDLOG_FMT_EXTERNAL OFF CACHE BOOL "" FORCE)
+  FetchContent_Declare(
+    FetchContent_spdlog
+    URL "${CMAKE_CURRENT_LIST_DIR}/cmake_fetch_content-spdlog.zip"
+    URL_MD5 "F00DFA11FD9EE2F9B54D0315F4590E6B"
+    DOWNLOAD_EXTRACT_TIMESTAMP OFF
+  )
+  FetchContent_MakeAvailable(FetchContent_spdlog)
+endif()
 target_link_libraries(
   ONLYTEST_0_deps INTERFACE "spdlog::spdlog"
 )

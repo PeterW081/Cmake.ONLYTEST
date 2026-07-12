@@ -13,7 +13,7 @@
 #
 
 #/**/
-#if(not defined(_MARCRO_ONLYTEST_0_FORMAT_WITH_FMT) and not defined(_MARCRO_ONLYTEST_0_FORMAT_WITH_BOOST))
+#if(not defined(_MARCRO_ONLYTEST_0_ENABLE))
 #	define SPDLOG_ONLYTEST(...)
 #	define SPDLOG_ONLYTEST_MARK(MACRO_P1) [](...) -> void {}
 #else
@@ -22,6 +22,8 @@
 #endif
 #
 
+#/**/
+#if(defined(_MARCRO_ONLYTEST_0_ENABLE))
 namespace testonly
 {
 	namespace detail_macro_helper
@@ -29,7 +31,6 @@ namespace testonly
 		struct CallableForCxx11;
 	}
 }
-
 struct testonly::detail_macro_helper::CallableForCxx11
 {
 	const char* m_file;
@@ -39,7 +40,6 @@ struct testonly::detail_macro_helper::CallableForCxx11
 	template<typename T_arg1, typename... TS_args>
 	auto operator()(T_arg1 arg1, TS_args&&... args) const -> void;
 };
-
 inline testonly::detail_macro_helper::CallableForCxx11::CallableForCxx11(const char* file, int line, std::string mark)
 	: m_file(file)
 	, m_line(line)
@@ -49,13 +49,13 @@ inline testonly::detail_macro_helper::CallableForCxx11::CallableForCxx11(const c
 template<typename T_arg1, typename... TS_args>
 inline auto testonly::detail_macro_helper::CallableForCxx11::operator()(T_arg1 arg1, TS_args&&... args) const -> void
 {
-#if(false)
-#elif(_MARCRO_ONLYTEST_0_FORMAT_WITH_FMT)
+#	if(false)
+#	elif(_MARCRO_ONLYTEST_0_FORMAT_WITH_FMT)
 	auto arg1_ = fmt::runtime(arg1);
-#elif(_MARCRO_ONLYTEST_0_FORMAT_WITH_BOOST)
+#	elif(_MARCRO_ONLYTEST_0_FORMAT_WITH_BOOST)
 	auto& arg1_ = arg1;
-#endif
-#if(defined(_MARCRO_ONLYTEST_0_FORMAT_FUNCTION))
+#	endif
 	testonly::detail::FX_log(m_file, m_line, m_mark + testonly::detail::_MARCRO_ONLYTEST_0_FORMAT_FUNCTION(arg1_, args...));
-#endif
 }
+#endif
+#

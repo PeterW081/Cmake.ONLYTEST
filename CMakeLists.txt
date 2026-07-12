@@ -5,6 +5,11 @@ option(OPT_ONLYTEST_CLEANUP "" OFF)
 option(OPT_ONLYTEST_DISABLE_FORCE "" OFF)
 option(OPT_ONLYTEST_ENABLE "" ON)
 option(OPT_ONLYTEST_FORMAT_0_IS_FMT_OR_BOOST "" ON)
+##X
+if(CMAKE_BUILD_TYPE STREQUAL Release)
+  set(OPT_ONLYTEST_DISABLE_FORCE ON)
+  message(WARNING)
+endif()
 
 ###
 cmake_minimum_required(VERSION "${VAR_cmake_version}")
@@ -14,14 +19,8 @@ include("${PROJECT_SOURCE_DIR}/_package/_include.cmake")
 ###
 if(OPT_ONLYTEST_CLEANUP)
   add_library("${VAR_project_name}" INTERFACE)
-  if(NOT ("${VAR_project_name}" STREQUAL "ONLYTEST"))
-    message(FATAL_ERROR)
-  endif()
 else()
   add_library("${VAR_project_name}" STATIC)
-  if(NOT ("${VAR_project_name}" STREQUAL "ONLYTEST"))
-    message(FATAL_ERROR)
-  endif()
   ##X
   file(GLOB_RECURSE ARR_cxx_source "${PROJECT_SOURCE_DIR}/source/*.cxx")
   list(APPEND ARR_cxx_header "${PROJECT_SOURCE_DIR}/source/")
@@ -40,6 +39,9 @@ else()
     "${VAR_project_name}" PUBLIC "${PROJECT_SOURCE_DIR}/source/_head_global_0_ONLYTEST.hxx"
   )
   if(NOT OPT_ONLYTEST_DISABLE_FORCE AND OPT_ONLYTEST_ENABLE)
+    target_compile_definitions(
+      "${VAR_project_name}" PUBLIC "_MARCRO_ONLYTEST_0_ENABLE"
+    )
     if(OPT_ONLYTEST_FORMAT_0_IS_FMT_OR_BOOST)
       target_compile_definitions(
         "${VAR_project_name}" PUBLIC "_MARCRO_ONLYTEST_0_FORMAT_WITH_FMT"

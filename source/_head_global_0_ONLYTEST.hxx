@@ -1,8 +1,9 @@
-#pragma once
+#if(defined(_MARCRO_ONLYTEST_0_ENABLE))
+#	pragma once
 #
-#include <thread>
-#include <string>
-#include <fmt/format.h>
+#	include <thread>
+#	include <string>
+#	include <fmt/format.h>
 #
 
 namespace testonly
@@ -26,7 +27,17 @@ namespace testonly
 }
 
 #
-#include "_head_global_0_ONLYTEST.txx"
-#include "_head_global_0_ONLYTEST.hxx-MACRO-01.cc"
-#include "_head_global_0_ONLYTEST.hxx-MACRO-02.cc"
-#pragma
+#	include "_head_global_0_ONLYTEST.txx"
+#	include "_head_global_0_ONLYTEST.hxx-MACRO-01.cc"
+#	include "_head_global_0_ONLYTEST.hxx-MACRO-02.cc"
+#	pragma
+#endif
+
+#if(not defined(_MARCRO_ONLYTEST_0_ENABLE))
+#	pragma once
+#
+#	include "_head_global_0_ONLYTEST.hxx-MACRO-01.cc"
+#	include "_head_global_0_ONLYTEST.hxx-MACRO-02.cc"
+#
+#	pragma
+#endif

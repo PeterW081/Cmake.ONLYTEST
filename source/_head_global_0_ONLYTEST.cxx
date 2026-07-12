@@ -1,11 +1,12 @@
 #include "_head_global_0_ONLYTEST.hxx"
-#pragma
+#if(defined(_MARCRO_ONLYTEST_0_ENABLE))
+#	pragma
 #
-#include <thread>
-#include <map>
-#/*---*/
-#include <spdlog/spdlog.h>
-#include <spdlog/sinks/stdout_sinks.h>
+#	include <thread>
+#	include <map>
+#	/*---*/
+#	include <spdlog/spdlog.h>
+#	include <spdlog/sinks/stdout_sinks.h>
 #
 
 ///
@@ -51,3 +52,7 @@ auto testonly::detail::FxMakeStr_this_thread_id() -> std::string
 	auto thread_mark = map[thread_id];
 	return fmt::format("thread{:02d}-{}", thread_mark, thread_id);
 }
+
+#
+#	pragma
+#endif

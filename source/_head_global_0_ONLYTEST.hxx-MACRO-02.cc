@@ -3,7 +3,7 @@
 #
 
 #/**/
-#if(not defined(_MARCRO_ONLYTEST_0_FORMAT_WITH_FMT) and not defined(_MARCRO_ONLYTEST_0_FORMAT_WITH_BOOST))
+#if(not defined(_MARCRO_ONLYTEST_0_ENABLE))
 #	define STD_SLEEP_SECOND_ONLYTEST(MACRO_P1)
 #	define STRING_ONLYTEST(...)             std::string()
 #	define STRING_ONLYTEST_THIS_THREAD_ID() std::string()
