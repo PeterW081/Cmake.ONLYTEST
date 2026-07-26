@@ -13,7 +13,7 @@ namespace testonly
 		template<typename... TS_args>
 		extern auto FX_format00_ez(TS_args&&...) -> std::string;
 		template<typename... TS_fmt_args>
-		extern auto FX_format01_fmt(typename fmt::fstring<TS_fmt_args...>::t, TS_fmt_args&&...) -> std::string;
+		extern auto FX_format01_fmt(typename fmt::format_string<TS_fmt_args...>::t, TS_fmt_args&&...) -> std::string;
 		template<typename... TS_fmt_args>
 		extern auto FX_format02_boost(const std::string&, TS_fmt_args&&...) -> std::string;
 	}
