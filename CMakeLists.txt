@@ -1,19 +1,23 @@
-set(VAR_cmake_version "3.12")
+set(VAR_cmake_minimum_required "3.12")
 set(VAR_project_name "ONLYTEST")
+set(VAR_project_edit "340.115.436.1")
 ##X
 option(OPT_ONLYTEST_CLEANUP "" OFF)
 option(OPT_ONLYTEST_DISABLE_FORCE "" OFF)
 option(OPT_ONLYTEST_ENABLE "" ON)
 option(OPT_ONLYTEST_FORMAT_0_IS_FMT_OR_BOOST "" ON)
+option(OPT_ONLYTEST_FIND_PACKAGE_FORCE_0_SPDLOG "" ON)
 ##X
 if(CMAKE_BUILD_TYPE STREQUAL Release)
-  set(OPT_ONLYTEST_DISABLE_FORCE ON)
-  message(WARNING)
+  if(NOT OPT_ONLYTEST_CLEANUP)
+    message(WARNING)
+  endif()
+  set(OPT_ONLYTEST_CLEANUP ON)
 endif()
 
 ###
-cmake_minimum_required(VERSION "${VAR_cmake_version}")
-project("${VAR_project_name}")
+cmake_minimum_required(VERSION "${VAR_cmake_minimum_required}")
+project("${VAR_project_name}" VERSION "${VAR_project_edit}")
 include("${PROJECT_SOURCE_DIR}/_package/_include.cmake")
 
 ###
