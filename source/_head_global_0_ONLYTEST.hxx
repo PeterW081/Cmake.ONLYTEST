@@ -4,7 +4,7 @@
 #	/*---*/
 #	include <thread>
 #	include <string>
-#	include <fmt/format.h>
+#	include <spdlog/fmt/fmt.h>
 #	/*---*/
 #
 namespace ns_ONLYTEST

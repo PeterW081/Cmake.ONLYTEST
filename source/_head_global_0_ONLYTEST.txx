@@ -1,8 +1,8 @@
 #//include "_head_global_0_ONLYTEST.hxx"
 #/*---*/
 #include <sstream>
-#include <fmt/format.h>
 #include <boost/format.hpp>
+#include <spdlog/fmt/fmt.h>
 #/*---*/
 #
 

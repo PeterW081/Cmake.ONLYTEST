@@ -37,11 +37,10 @@ if(NOT OPT_ONLYTEST_CLEANUP)
   # > sudo dnf install spdlog-devel
   # > sudo apt install libspdlog-dev
   # FetchContent_Declare()
-  # > wget "https://github.com/gabime/spdlog/archive/refs/tags/v1.15.3.zip" -O ./cmake_fetch_content-spdlog.zip
+  # > wget "https://github.com/gabime/spdlog/archive/refs/tags/v1.17.0.zip" -O ./cmake_fetch_content-spdlog.zip
   ###
   if(ON)
-    find_package("spdlog")
-    find_package("fmt")
+    find_package("spdlog" QUIET)
   endif()
   if((NOT TARGET spdlog::spdlog) AND (NOT OPT_ONLYTEST_FIND_PACKAGE_FORCE_0_SPDLOG))
     if(POLICY CMP0135)
@@ -52,17 +51,11 @@ if(NOT OPT_ONLYTEST_CLEANUP)
     FetchContent_Declare(
       FetchContent_spdlog
       URL "${CMAKE_CURRENT_LIST_DIR}/cmake_fetch_content-spdlog.zip"
-      URL_MD5 "F00DFA11FD9EE2F9B54D0315F4590E6B"
+      URL_MD5 "D38D278383B768847CCC4616879DF42F"
     )
     FetchContent_MakeAvailable(FetchContent_spdlog)
-  else()
-    if(TARGET "fmt::fmt")
-      target_link_libraries(
-        "spdlog::spdlog" INTERFACE "fmt::fmt"
-      )
-    endif()
   endif()
   target_link_libraries(
-    ONLYTEST_0_deps INTERFACE "spdlog::spdlog"
+    ONLYTEST_0_deps INTERFACE "spdlog::spdlog_header_only"
   )
 endif()
