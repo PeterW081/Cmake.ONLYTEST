@@ -1,12 +1,13 @@
 set(VAR_cmake_minimum_required "3.12")
 set(VAR_project_name "ONLYTEST")
-set(VAR_project_edit "340.115.436.2")
+set(VAR_project_edit "340.115.476.1")
 ##X
 option(OPT_ONLYTEST_CLEANUP "" OFF)
 option(OPT_ONLYTEST_DISABLE_FORCE "" OFF)
 option(OPT_ONLYTEST_ENABLE "" ON)
 option(OPT_ONLYTEST_FORMAT_0_IS_FMT_OR_BOOST "" ON)
-option(OPT_ONLYTEST_FIND_PACKAGE_FORCE_0_SPDLOG "" ON)
+option(OPT_ONLYTEST_LOGGER_0_IS_SOURCE_LOC "" ON)
+option(OPT_ONLYTEST_FIND_PACKAGE_FORCE_0_SPDLOG "" OFF)
 
 ###
 cmake_minimum_required(VERSION "${VAR_cmake_minimum_required}")
@@ -48,5 +49,10 @@ else()
         "${VAR_project_name}" PUBLIC "_MARCRO_ONLYTEST_0_FORMAT_WITH_BOOST"
       )
     endif()
+  endif()
+  if(NOT OPT_ONLYTEST_LOGGER_0_IS_SOURCE_LOC)
+    target_compile_definitions(
+      "${VAR_project_name}" PRIVATE "SPDLOG_NO_SOURCE_LOC"
+    )
   endif()
 endif()

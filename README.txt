@@ -9,10 +9,10 @@
 - execute: "vim ./_package/_include.cmake"
   feature: [ FileCreate, ]
   content: |
-    if(ON)
+    if(NOT TARGET "ONLYTEST")
       ### - ONLYTEST
       # FetchContent_Declare()
-      # > wget "https://github.com/PeterW081/Cmake.ONLYTEST/archive/refs/tags/340.115.436.2.zip" -O ./cmake_fetch_content-ONLYTEST.zip
+      # > wget "https://github.com/PeterW081/Cmake.ONLYTEST/archive/refs/tags/340.115.476.1.zip" -O ./cmake_fetch_content-ONLYTEST.zip
       ###
       option(OPT_ONLYTEST_CLEANUP "" OFF)
       if(OPT_ONLYTEST_CLEANUP OR CMAKE_BUILD_TYPE STREQUAL Release)
@@ -20,13 +20,13 @@
       endif()
       option(OPT_ONLYTEST_ENABLE "" ON)
       option(OPT_ONLYTEST_FORMAT_0_IS_FMT_OR_BOOST "" ON)
-      option(OPT_ONLYTEST_FIND_PACKAGE_FORCE_0_SPDLOG "" ON)
+      option(OPT_ONLYTEST_FIND_PACKAGE_FORCE_0_SPDLOG "" OFF)
       ###
       include(FetchContent)
       FetchContent_Declare(
         FetchContent_ONLYTEST
         URL "${CMAKE_CURRENT_LIST_DIR}/cmake_fetch_content-ONLYTEST.zip"
-        URL_MD5 "BCB35A2B329612041203C1DB23BA0864"
+        URL_MD5 "00000000000000000000000000000000"
         DOWNLOAD_EXTRACT_TIMESTAMP OFF
       )
       FetchContent_MakeAvailable(FetchContent_ONLYTEST)
@@ -38,7 +38,7 @@
     if(NOT CMAKE_BUILD_TYPE STREQUAL Release)
       include("${CMAKE_SOURCE_DIR}/_package/_include.cmake")
       link_libraries(
-        ONLYTEST
+        "ONLYTEST"
       )
     endif()
 

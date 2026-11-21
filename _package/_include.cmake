@@ -42,12 +42,13 @@ if(NOT OPT_ONLYTEST_CLEANUP)
   if(ON)
     find_package("spdlog" QUIET)
   endif()
-  if((NOT TARGET spdlog::spdlog) AND (NOT OPT_ONLYTEST_FIND_PACKAGE_FORCE_0_SPDLOG))
+  if((NOT TARGET "spdlog::spdlog_header_only") AND (NOT OPT_ONLYTEST_FIND_PACKAGE_FORCE_0_SPDLOG))
     if(POLICY CMP0135)
       cmake_policy(SET CMP0135 NEW)
     endif()
     include(FetchContent)
     set(SPDLOG_FMT_EXTERNAL OFF CACHE BOOL "" FORCE)
+    set(SPDLOG_FMT_EXTERNAL_HO OFF CACHE BOOL "" FORCE)
     FetchContent_Declare(
       FetchContent_spdlog
       URL "${CMAKE_CURRENT_LIST_DIR}/cmake_fetch_content-spdlog.zip"
