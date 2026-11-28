@@ -26,7 +26,7 @@
       FetchContent_Declare(
         FetchContent_ONLYTEST
         URL "${CMAKE_CURRENT_LIST_DIR}/cmake_fetch_content-ONLYTEST.zip"
-        URL_MD5 "00000000000000000000000000000000"
+        URL_MD5 "172F1BA8FFA39F1C4E3D27A042A5157E"
         DOWNLOAD_EXTRACT_TIMESTAMP OFF
       )
       FetchContent_MakeAvailable(FetchContent_ONLYTEST)
