@@ -3,6 +3,7 @@
 #if(defined(_MARCRO_ONLYTEST_0_ENABLE))
 #	/*---*/
 #	include <thread>
+#	include <mutex>
 #	include <map>
 #	include <spdlog/fmt/std.h>
 #	/*---*/
@@ -17,7 +18,7 @@ auto ns_ONLYTEST::detail::FxMakeStr_this_thread_id() -> std::string
 {
 	static std::mutex mutex;
 	static auto map = std::map<std::string, std::size_t>();
-	auto thread_id = (std::stringstream() << std::this_thread::get_id()).str();
+	auto thread_id = dynamic_cast<std::stringstream&&>(std::stringstream() << std::this_thread::get_id()).str();
 	if(map.find(thread_id) == map.end())
 	{
 		std::lock_guard<decltype(mutex)> lock(mutex);

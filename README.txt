@@ -12,7 +12,7 @@
     if(NOT TARGET "ONLYTEST")
       ### - ONLYTEST
       # FetchContent_Declare()
-      # > wget "https://github.com/PeterW081/Cmake.ONLYTEST/archive/refs/tags/340.115.476.1.zip" -O ./cmake_fetch_content-ONLYTEST.zip
+      # > wget "https://github.com/PeterW081/Cmake.ONLYTEST/archive/refs/tags/340.115.476.2.zip" -O ./cmake_fetch_content-ONLYTEST.zip
       ###
       option(OPT_ONLYTEST_CLEANUP "" OFF)
       if(OPT_ONLYTEST_CLEANUP OR CMAKE_BUILD_TYPE STREQUAL Release)
@@ -26,7 +26,7 @@
       FetchContent_Declare(
         FetchContent_ONLYTEST
         URL "${CMAKE_CURRENT_LIST_DIR}/cmake_fetch_content-ONLYTEST.zip"
-        URL_MD5 "2D246878A96E2C3468E0931A77ADD531"
+        URL_MD5 "00000000000000000000000000000000"
         DOWNLOAD_EXTRACT_TIMESTAMP OFF
       )
       FetchContent_MakeAvailable(FetchContent_ONLYTEST)

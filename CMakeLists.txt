@@ -1,6 +1,6 @@
 set(VAR_cmake_minimum_required "3.12")
 set(VAR_project_name "ONLYTEST")
-set(VAR_project_edit "340.115.476.1")
+set(VAR_project_edit "340.115.476.2")
 ##X
 option(OPT_ONLYTEST_CLEANUP "" OFF)
 option(OPT_ONLYTEST_DISABLE_FORCE "" OFF)
@@ -16,7 +16,7 @@ include("${PROJECT_SOURCE_DIR}/_package/_include.cmake")
 
 ###
 if(OPT_ONLYTEST_CLEANUP)
-  add_library("${VAR_project_name}" INTERFACE)
+  add_library("${VAR_project_name}" STATIC)
 else()
   add_library("${VAR_project_name}" STATIC)
   ##X
